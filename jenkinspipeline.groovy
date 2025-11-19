@@ -1,38 +1,44 @@
 pipeline {
-    agent any
-    
-  triggers {
-        githubPush()
+
+    agent {
+        docker {
+            image  'python 3:31'
+            args '-u root' // ran as root inside the container
+        }
     }
 
     stages {
-        stage("Git Checkout") {
+
+        stage ('check out the Gitcode') {
             steps {
-                git branch: 'main', url: 'https://github.com/Harish-exc/Jenkinsfile.git'
+                echo 'cloning the git code '
+                gitbranch: 'main', url:  'https://github.com/Harish-exc/Jenkins-Projects.git'
             }
         }
 
-        stage("Build Start") {
+        stage ('build') {
             steps {
-                echo 'BUILD STARTED'
+                echo 'Build started'
+                sh 'python --version'
             }
         }
 
-        stage("Lint") {
+        stage ('lint') {
             steps {
-                echo 'LINT OK'
+                echo 'running the lint'
+                sh 'echo lint OK'
             }
         }
 
-        stage("Test") {
-            steps {
-                echo 'TEST OK'
+        stage ('test') {
+            staps {
+                echo 'running the test'
+                sh 'echo test ok'
             }
         }
-
-        stage("Artifacts") {
+          stage('Archive') {
             steps {
-                sh 'echo "pipeline completed" > output.txt'
+                sh 'echo docker build done > output.txt'
                 archiveArtifacts artifacts: 'output.txt'
             }
         }
