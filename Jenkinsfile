@@ -16,10 +16,6 @@ pipeline {
                 echo "Pipeline complete for ${env.BRANCH_NAME}"
             }
         }
-         stage('Done Harish') {
-            steps {
-                echo "Pipeline complete for ${env.BRANCH_NAME}"
-            }
-        }
+       
     }
 }
