@@ -6,7 +6,7 @@ pipeline {
                 checkout scm
             }
         }
-        stage('Build') {
+        stage('Build feature') {
             steps {
                 echo "Building branch ${env.BRANCH_NAME}"
             }
