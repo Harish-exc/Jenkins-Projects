@@ -6,12 +6,12 @@ pipeline {
                 checkout scm
             }
         }
-        stage('Build main ') {
+        stage('Build main  ') {
             steps {
                 echo "Building branch ${env.BRANCH_NAME}"
             }
         }
-        stage('Done') {
+        stage('Done Harish') {
             steps {
                 echo "Pipeline complete for ${env.BRANCH_NAME}"
             }
